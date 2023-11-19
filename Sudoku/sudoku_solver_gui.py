@@ -32,6 +32,10 @@ class SudokuGUI:
         solve_button = tk.Button(master, text="Solve", command=self.solve_sudoku)
         solve_button.grid(row=11, columnspan=9, pady=10)
 
+        # Add Clear button
+        clear_button = tk.Button(master, text="Clear", command=self.clear_entries)
+        clear_button.grid(row=12, columnspan=9, pady=10)
+
         # Configure row and column weights
         for i in range(9):
             master.grid_rowconfigure(i, weight=1)
@@ -116,6 +120,14 @@ class SudokuGUI:
                 if digit == puzzle[_row][_col]:
                     return False
         return True
+
+    def clear_entries(self):
+        # Clear all entry widgets
+        for i in range(9):
+            for j in range(9):
+                self.entries[i][j].delete(0, tk.END)
+
+        self.message_label.config(text="Entries cleared", fg="green")
 
 
 if __name__ == "__main__":
